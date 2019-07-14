@@ -1,8 +1,7 @@
 {
-  "name": "MEVN-todo",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Robert Janagap <janagaprobert@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
