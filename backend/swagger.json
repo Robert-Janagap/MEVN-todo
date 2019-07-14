@@ -1,0 +1,311 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MEVN todo manager",
+    "version": "1"
+  },
+  "tags": [
+    {
+      "name": "todos",
+      "description": "Everything about todos"
+    },
+    {
+      "name": "categories",
+      "description": "Everything about categories"
+    }
+  ],
+  "paths": {
+    "/todos": {
+      "get": {
+        "tags": ["todos"],
+        "summary": "GET all todos",
+        "description": "User get all its todos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful on getting todos",
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["todos"],
+        "summary": "POST one in todos",
+        "description": "User add new todos",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "object to create todos",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful on adding todos",
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        }
+      }
+    },
+    "/todos/{handle}": {
+      "post": {
+        "tags": ["todos"],
+        "summary": "POST todo",
+        "description": "User add one todo",
+        "parameters": [
+          {
+            "name": "handle",
+            "in": "path",
+            "description": "todo handle",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Add new todo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/todo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful adding todo",
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["todos"],
+        "summary": "GET todo",
+        "description": "User select one todos",
+        "parameters": [
+          {
+            "name": "handle",
+            "in": "path",
+            "description": "Select one todos",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful on getting todos",
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["todos"],
+        "summary": "PUT todo",
+        "description": "User update todo",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "todos object that will be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful update",
+            "schema": {
+              "$ref": "#/definitions/todos"
+            }
+          }
+        }
+      }
+    },
+    "/todos/{handle}/{todoID}": {
+      "delete": {
+        "tags": ["todos"],
+        "summary": "DELETE todo",
+        "description": "User delete todo",
+        "parameters": [
+          {
+            "name": "handle",
+            "in": "path",
+            "description": "todo handle",
+            "required": true
+          },
+          {
+            "name": "todoID",
+            "in": "path",
+            "description": "todo id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Delete"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": ["categories"],
+        "summary": "GET all categories",
+        "description": "User get all its category",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful on getting categories",
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["categories"],
+        "summary": "POST category",
+        "description": "User add category",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "object of adding category",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful on adding category",
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["categories"],
+        "summary": "PUT category",
+        "description": "User update category",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "object of updating category",
+            "require": true,
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful on updating category",
+            "schema": {
+              "$ref": "#/definitions/categories"
+            }
+          }
+        }
+      }
+    },
+    "/categories/{categoryID}": {
+      "delete": {
+        "tags": ["categories"],
+        "summary": "DELETE category",
+        "description": "User delete category",
+        "parameters": [
+          {
+            "name": "categoryID",
+            "in": "path",
+            "description": "category id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Delete"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "todos": {
+      "required": ["todoID", "title", "handle", "createdBy"],
+      "properties": {
+        "todoID": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "dateCreated": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string"
+        },
+        "todos": {
+          "$ref": "#/definitions/todo"
+        }
+      }
+    },
+    "todo": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "categories": {
+      "required": ["title", "color", "categoryID"],
+      "properties": {
+        "title": {
+          "type": "String"
+        },
+        "color": {
+          "type": "String"
+        },
+        "categoryID": {
+          "type": "String"
+        }
+      }
+    }
+  }
+}
